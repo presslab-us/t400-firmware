@@ -472,7 +472,8 @@ int32_t celcius_to_microvolts(int16_t celcius)
 
   // This interpolates the voltage between the 2 points??
   // ??? (low - offset) + ((temp - VAR) * (delta/10))
-  voltage = tempWindowLowMicrovolts - TK_OFFSET + (celcius - (lut_index*10-270)) * (tempWindowHighMicrovolts - tempWindowLowMicrovolts)/10;
+  voltage = (int32_t)tempWindowLowMicrovolts - TK_OFFSET;
+  voltage += (celcius - (lut_index * 100 + (TK_MIN_TEMP * 10))) * (tempWindowHighMicrovolts - tempWindowLowMicrovolts) / 100;
 
   //return i; // Displays '29.0' on the LCD as expected
   //return tempTypK[29]; // Displays '7256.0'on LCD

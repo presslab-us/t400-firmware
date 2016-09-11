@@ -21,6 +21,7 @@ Firmware for the Pax Instruments T400 temperature datalogger
 */
 
 
+
 // Import libraries
 #include "t400.h"             // Board definitions
 
@@ -299,7 +300,7 @@ static void readTemperatures()
 
     // Get the measured voltage, removing the ambient junction temperature
     //compensatedVoltage = measuredVoltageUv + celcius_to_microvolts( (((float)(ambient))/10.0) );
-    compensatedVoltage = measuredVoltageUv + celcius_to_microvolts(ambient);
+    compensatedVoltage = tmpint32 + celcius_to_microvolts(ambient);
 
 
     // Given a voltage, get the temperature
